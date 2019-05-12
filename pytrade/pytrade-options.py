@@ -1,4 +1,5 @@
-from datetime import datetime
+import datetime
+import time
 
 from bs4 import BeautifulSoup
 import requests
@@ -68,6 +69,19 @@ def get_call_otm_info(otm_call):
     }
     print('======== otm-call-info ==========')
     print(otm_call_data)
+    get_datestamp()
+
+def get_datestamp():
+    stock_url = 'https://finance.yahoo.com/quote/SPY/options?date='
+    today = int(time.time())
+    date = datetime.datetime.fromtimestamp(today)
+    yy = date.year
+    mm = date.month
+    dd = date.day
+    options_day = datetime.date(yy, mm, dd)
+    datestamp = int(time.mktime(options_day.timetuple()))
+    print(datestamp)
+    # print(datetime.datetime.fromtimestamp(options_stamp))
 
 
 if __name__ == '__main__':

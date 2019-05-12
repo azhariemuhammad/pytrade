@@ -5,18 +5,20 @@ import requests
 
 
 def main():
-    data_url = 'https://finance.yahoo.com/quote/ANTM.JK'
+    data_url = 'https://analytics2.rti.co.id/?m_id=1&sub_m=s4'
     data_html = requests.get(data_url).content
     content = BeautifulSoup(data_html, 'html.parser')
     summary_table = []
+    # tables = content.find_all('table')
     tables = content.find_all('table')
-    quote = content.find_all('h1')[0].text[:7]
+    # quote = content.find_all('h1')[0].text[:7]
     print('======== Quote ==========')
-    print(quote)
-    for i in range(0, len(content.find_all('table'))):
-        summary_table.append(tables[i])
-
-    find_table(summary_table)
+    print(tables)
+    # print(quote)
+    # for i in range(0, len(content.find_all('table'))):
+    #     summary_table.append(tables[i])
+    print(summary_table)
+    # find_table(summary_table)
 
 
 def find_table(summary_table):
